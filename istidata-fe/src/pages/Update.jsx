@@ -49,14 +49,21 @@ export default function EditPages() {
   const handleSubmit = useMutation(async (e) => {
     try {
       e.preventDefault();
+      console.log("submitting")
 
-      await API.patch("/vehicle", form);
+      await API.put("/vehicle/" + id, form);
       alert("data berhasil dirubah");
       navigate("/");
     } catch (error) {
       console.log(error);
     }
-  });
+  }, {
+    onError: error => {
+      console.log(error)},
+    onSuccess: data => console.log(data)
+  }
+
+      );
 
   return (
     <div>
