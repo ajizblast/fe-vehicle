@@ -63,7 +63,7 @@ export default function Home() {
       };
 
       const body = JSON.stringify(form);
-      const response = await API.post("/data/search" , body, config );
+      const response = await API.post("/search" , body, config );
 
       if (response.status === 200) {
         setFilter(response.data)
@@ -74,7 +74,7 @@ export default function Home() {
   
   const deleteById = useMutation(async (id) => {
     try {
-      await API.delete("/data/" + id);
+      await API.delete("/vehicle/" + id);
       refetch();
     } catch (error) {
     }
@@ -199,13 +199,11 @@ export default function Home() {
                 <td>{index + 1}</td>
                 <td>{data?.registrationNumber}</td>
                 <td>{data?.ownerName}</td>
-                <td>{getAge(data?.productionYear)}</td>
+                <td>{data?.vehicleBrand}</td>
                 <td>{data?.productionYear}</td>
-                <td>{data?.gender}</td>
-                <td>
-                  {data?.address}
-                </td>
-                <td>{data?.country}</td>
+                <td>{data?.cylinderCapacity}</td>
+                <td>{data?.vehicleColor}</td>
+                <td>{data?.fuel}</td>
                 <td className="d-flex gap-3">
                   <div
                     className="text-warning pointer"

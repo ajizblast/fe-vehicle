@@ -12,7 +12,7 @@ export default function DetailPages() {
   useEffect(() => {
     const fachDetail = async () => {
       try {
-        const response = await API.get("/data/" + id);
+        const response = await API.get("/vehicle/" + id);
         setDetail(response.data);
       } catch (error) {
       }
@@ -51,28 +51,31 @@ export default function DetailPages() {
               <Table>
               <h5>
               <tr>
-              <th>NIK :</th>
+              <th>No Registrasi :</th>
               <th>{fachDetail.registrationNumber}</th>
               </tr>
               <tr>
-              <th>Nama Lengkap : </th>
+              <th>Nama Pemilik : </th>
               <th>{fachDetail.ownerName}</th>
               </tr>
               <tr>
-              <th>Umur : </th>
-              <th>{getAge(fachDetail.birth)}</th>
+              <th>Merk Kendaraan : </th>
+              <th>{getAge(fachDetail.vehicleBrand)}</th>
               </tr>
               <tr>
-              <th>Tanggal Lahir:</th>
-              <th>{fachDetail.birth}</th>
+              <th>Tahun Pembuatan:</th>
+              <th>{fachDetail.productionYear}</th>
               </tr>
               <tr>
-              <th>Jenis Kelamin :</th>
-              <th>{fachDetail.gender}</th>
+              <th>Kapasitas :</th>
+              <th>{fachDetail.cylinderCapacity}</th>
               </tr>
               <tr>
-              <th>Alamat :</th>
-              <th>{fachDetail.address}</th>
+              <th>Warna :</th>
+              <th>{fachDetail.vehicleColor}</th>
+              </tr><tr>
+              <th>Bahan Bakar :</th>
+              <th>{fachDetail.fuel}</th>
               </tr>
               </h5>
               </Table>

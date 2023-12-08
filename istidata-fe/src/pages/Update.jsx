@@ -21,11 +21,11 @@ export default function EditPages() {
   });
 
   let getData = async () => {
-    const response = await API.get("/data/" + id);
+    const response = await API.get("/vehicle/" + id);
     setForm({
       ...form,
       registrationNumber: response.data.registrationNumber,
-      name: response.data.name,
+      ownerName: response.data.ownerName,
       address: response.data.address,
       vehicleBrand: response.data.vehicleBrand,
       productionYear: response.data.productionYear,
@@ -50,7 +50,7 @@ export default function EditPages() {
     try {
       e.preventDefault();
 
-      await API.patch("/data", form);
+      await API.patch("/vehicle", form);
       alert("data berhasil dirubah");
       navigate("/");
     } catch (error) {
@@ -170,7 +170,7 @@ export default function EditPages() {
                         type="text"
                         name="fuel"
                         id="fuel"
-                        value={form.bensin}
+                        value={form.fuel}
                         onChange={handleChange}
                     />
                   </Form.Group>

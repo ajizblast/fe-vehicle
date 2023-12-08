@@ -35,7 +35,7 @@ export default function AddPages() {
     try {
       e.preventDefault();
 
-      await API.post("/data", form);
+      await API.post("/vehicle", form);
       alert("data berhasil tersimpan");
       navigate("/");
     } catch (error) {
