@@ -63,12 +63,21 @@ export default function Home() {
       };
 
       const body = JSON.stringify(form);
-      const response = await API.post("/search" , body, config );
+      const response = await API.post("/search", body, config);
 
       if (response.status === 200) {
-        setFilter(response.data)
+        const searchData = response.data;
+
+        if (searchData.length > 0) {
+          // Jika data ditemukan, setFilter dengan data yang ditemukan
+          setFilter(searchData);
+        } else {
+          // Jika data tidak ditemukan, tampilkan alert
+          alert("Data tidak ditemukan!");
+        }
       }
     } catch (error) {
+      console.error("Error during search:", error);
     }
   });
   
