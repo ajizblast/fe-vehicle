@@ -50,7 +50,7 @@ export default function Home() {
   const handleChange = (e) => {
     setForm({
       ...form,
-      [e.target.ownerName]: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
   const handleSubmit = useMutation(async (e) => {
@@ -89,7 +89,7 @@ export default function Home() {
   }, [confirmDelete]);
 
   useEffect(() => {
-    if (form.registrationNumber == "" && form.ownerName == "0") {
+    if (form.registrationNumber === "" && form.ownerName === "0") {
       setFilter(fachData)
     }
   }, [fachData]);
@@ -101,17 +101,17 @@ export default function Home() {
     navigate("/edit/" + id);
   };
 
-  //umur
-  function getAge(dateString) {
-    var today = new Date();
-    var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
-  }
+  // // umur
+  // function getAge(dateString) {
+  //   var today = new Date();
+  //   var birthDate = new Date(dateString);
+  //   var age = today.getFullYear() - birthDate.getFullYear();
+  //   var m = today.getMonth() - birthDate.getMonth();
+  //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  //     age--;
+  //   }
+  //   return age;
+  // }
 
   return (
     <div>
@@ -194,7 +194,8 @@ export default function Home() {
                   </tr>
                 </thead>
            <tbody>
-            {filter?.map((data, index) => (
+
+            {filter?.slice().reverse().map((data, index) => (
               <tr key={index} className="opacity-75">
                 <td>{index + 1}</td>
                 <td>{data?.registrationNumber}</td>
@@ -207,14 +208,14 @@ export default function Home() {
                 <td className="d-flex gap-3">
                   <div
                     className="text-warning pointer"
-                    onClick={() => handleDetail(data?.registrationNumber)}
+                    onClick={() => handleDetail(index + 1)}
                   >
                     Detail
                   </div>
                   <div
                     className="text-primary pointer "
                     onClick={() => {
-                      handleUpdate(data?.registrationNumber);
+                      handleUpdate(index + 1);
                     }}
                   >
                     Edit
@@ -222,7 +223,7 @@ export default function Home() {
                   <div
                     className="text-danger pointer"
                     onClick={() => {
-                      handleDelete(data?.registrationNumber);
+                      handleDelete(index + 1);
                     }}
                   >
                     Hapus

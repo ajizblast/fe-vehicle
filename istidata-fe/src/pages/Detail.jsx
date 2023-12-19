@@ -8,7 +8,7 @@ export default function DetailPages() {
   let navigate = useNavigate();
   const { id } = useParams();
 
-  const [fachDetail, setDetail] = useState([]);
+  const [fachDetail, setDetail] = useState({});
   useEffect(() => {
     const fachDetail = async () => {
       try {
@@ -18,18 +18,18 @@ export default function DetailPages() {
       }
     };
     fachDetail();
-  }, [setDetail]);
+  }, [id, setDetail]);
 
-  function getAge(dateString) {
-    var today = new Date();
-    var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
-  }
+  // function getAge(dateString) {
+  //   var today = new Date();
+  //   var birthDate = new Date(dateString);
+  //   var age = today.getFullYear() - birthDate.getFullYear();
+  //   var m = today.getMonth() - birthDate.getMonth();
+  //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  //     age--;
+  //   }
+  //   return age;
+  // }
 
   const handleBack = () => {
     navigate("/");
@@ -60,7 +60,7 @@ export default function DetailPages() {
               </tr>
               <tr>
               <th>Merk Kendaraan : </th>
-              <th>{getAge(fachDetail.vehicleBrand)}</th>
+              <th>{fachDetail.vehicleBrand}</th>
               </tr>
               <tr>
               <th>Tahun Pembuatan:</th>
